@@ -1,6 +1,6 @@
 {
   "name": "webpack-validator",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "description": "Validate webpack configuration to save yourself some time debugging",
   "main": "dist",
   "files": [
