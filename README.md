@@ -13,7 +13,7 @@ Simply do:
 
 ```javascript
 var validateWebpackConfig = require('webpack-validator')
-var config = { ... }
+var config = { /* ... */ }
 module.exports = validateWebpackConfig(config)
 ```
 
