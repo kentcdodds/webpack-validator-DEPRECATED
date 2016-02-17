@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
+    "validate": "npm-run-all --parallel lint cover build test:configs --sequential check-coverage",
     "build": "babel -d dist src",
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html npm run test",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
@@ -16,6 +17,7 @@
     "test:all": "npm-run-all --parallel test test:configs",
     "test:configs": "ava tests/configs.js --verbose --require babel-register",
     "watch:test": "nodemon --quiet --watch src --exec npm run test -s",
+    "watch:test:all": "nodemon --quiet --watch src --watch tests --exec npm run test:all -s",
     "watch:test:configs": "nodemon --quiet --watch src --watch tests --exec npm run test:configs -s",
     "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s"
   },
@@ -65,7 +67,7 @@
   "config": {
     "ghooks": {
       "commit-msg": "validate-commit-msg",
-      "pre-commit": "npm-run-all --parallel lint cover build test:configs --sequential check-coverage"
+      "pre-commit": "npm run validate -s"
     }
   },
   "dependencies": {
