@@ -7,5 +7,6 @@ export default webpackValidator
 function webpackValidator(config, ...otherValidators) {
   const instanceValidators = flatten([...validators, ...otherValidators])
   configValidator('Webpack Config', config, instanceValidators)
+  return config
 }
 
