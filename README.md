@@ -30,6 +30,7 @@ npm install --save-dev webpack-validator
 This is just the beginning. Here are the lists of properties this currently validates:
 
 - `context`
+- `entry`
 
 ## Roadmap
 
