@@ -13,20 +13,26 @@
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html npm run test",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "lint": "eslint .",
-    "test": "ava 'src/**/*.test.js' --verbose --require babel-register",
+    "test": "ava 'src/**/*.test.js' --verbose --require ./other/setup-ava-env.js",
+    "test:scoped": "ava --verbose --require ./other/setup-ava-env.js",
     "test:all": "npm-run-all --parallel test test:configs",
-    "test:configs": "ava tests/configs.js --verbose --require babel-register",
+    "test:configs": "ava tests/configs.js --verbose --require ./other/setup-ava-env.js",
     "watch:test": "nodemon --quiet --watch src --exec npm run test -s",
+    "watch:test:scoped": "nodemon --quiet --watch src --exec npm run test:entry -s",
     "watch:test:all": "nodemon --quiet --watch src --watch tests --exec npm run test:all -s",
     "watch:test:configs": "nodemon --quiet --watch src --watch tests --exec npm run test:configs -s",
     "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kentcdodds/webpack-validator.git"
   },
   "keywords": [],
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
   "license": "MIT",
   "dependencies": {
     "configuration-validator": "1.0.0-beta.5",
-    "lodash.flatten": "4.0.0"
+    "lodash": "4.4.0"
   },
   "devDependencies": {
     "ava": "0.11.0",
@@ -47,6 +53,7 @@
     "npm-run-all": "1.5.1",
     "nyc": "5.6.0",
     "path-here": "1.1.0",
+    "proxyquire": "1.7.4",
     "rimraf": "2.5.2",
     "sinon": "1.17.3",
     "validate-commit-msg": "2.0.0",

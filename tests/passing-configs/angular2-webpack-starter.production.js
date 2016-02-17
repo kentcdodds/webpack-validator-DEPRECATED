@@ -39,10 +39,10 @@ module.exports = {
   devtool: 'source-map',
   debug: false,
 
-  entry: {
-    'polyfills':'./src/polyfills.ts',
-    'main':'./src/main.ts' // our angular app
-  },
+  //entry: {
+    //'polyfills':'./src/polyfills.ts',
+    //'main':'./src/main.ts' // our angular app
+  //},
 
   // Config for our build files
   output: {

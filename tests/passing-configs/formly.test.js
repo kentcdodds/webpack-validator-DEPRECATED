@@ -20,8 +20,8 @@ function getConfig() {
 
 function getCommonConfig() {
   return {
-    context: here('src'),
-    entry: './index.js',
+    context: here(),
+    entry: './configs.js',
     output: {
       libraryTarget: 'umd',
       library: 'ngFormly'
@@ -58,7 +58,7 @@ function getTestConfig() {
   const coverage = process.env.COVERAGE === 'true';
   const ci = process.env.CI === 'true';
   return {
-    entry: './index.test.js',
+    entry: './configs.js',
     module: {
       loaders: _.flatten([
         coverage ? getCoverageLoaders() : getJavaScriptLoader(),

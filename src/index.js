@@ -1,5 +1,5 @@
 import validators from './validators'
-import flatten from 'lodash.flatten'
+import {flatten} from 'lodash'
 import configValidator from 'configuration-validator'
 
 module.exports = webpackValidator

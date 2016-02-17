@@ -20,8 +20,8 @@ function getConfig() {
 
 function getCommonConfig() {
   return {
-    context: here('src'),
-    entry: './index.js',
+    context: here(),
+    entry: './configs.js',
     output: {
       libraryTarget: 'umd',
       library: 'ngFormly'
