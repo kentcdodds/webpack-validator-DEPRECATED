@@ -13,7 +13,7 @@
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html npm run test",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "lint": "eslint .",
-    "test": "ava 'src/**/*.test.js' --verbose --require ./other/setup-ava-env.js",
+    "test": "ava src/**/*.test.js --verbose --require ./other/setup-ava-env.js",
     "test:scoped": "ava --verbose --require ./other/setup-ava-env.js",
     "test:all": "npm-run-all --parallel test test:configs",
     "test:configs": "ava tests/configs.js --verbose --require ./other/setup-ava-env.js",
@@ -35,7 +35,7 @@
     "lodash": "4.4.0"
   },
   "devDependencies": {
-    "ava": "0.11.0",
+    "ava": "0.12.0",
     "babel-cli": "6.5.1",
     "babel-core": "6.5.2",
     "babel-preset-es2015": "6.5.0",

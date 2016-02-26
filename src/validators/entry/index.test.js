@@ -28,8 +28,8 @@ test('fails with an array of one string that does not exist', t => {
   const message = validate(entry, {config})
   t.ok(message)
   t.false(message.includes(' - '))
-  t.true(message.includes('/fake'))
-  t.false(message.includes('/exists'))
+  t.true(message.includes('fake'))
+  t.false(message.includes('exists1'))
 })
 
 test('fails with an array of multiple strings that do not exist', t => {
@@ -37,10 +37,10 @@ test('fails with an array of multiple strings that do not exist', t => {
   const config = {}
   const message = validate(entry, {config})
   t.ok(message)
-  t.false(message.includes('/exists'))
+  t.false(message.includes('exists1'))
   t.true(message.includes(' - '))
-  t.true(message.includes('/fake1'))
-  t.true(message.includes('/fake2'))
+  t.true(message.includes('fake1'))
+  t.true(message.includes('fake2'))
 })
 
 test('passes with an object', t => {
@@ -59,9 +59,9 @@ test('fails with an object with a single failure', t => {
   }
   const config = {}
   const message = validate(entry, {config})
-  t.false(message.includes('/exists'))
+  t.false(message.includes('exists1'))
   t.false(message.includes(' - '))
-  t.true(message.includes('/fake1'))
+  t.true(message.includes('fake1'))
 })
 
 test('fails with an object with multiple failures', t => {
@@ -71,10 +71,11 @@ test('fails with an object with multiple failures', t => {
   }
   const config = {}
   const message = validate(entry, {config})
-  t.false(message.includes('/exists'))
+  t.false(message.includes('exists1'))
   t.true(message.includes(' - '))
-  t.true(message.includes('/fake1'))
-  t.true(message.includes('/fake2'))
+  t.true(message.includes('fake1'))
+  t.true(message.includes('fake2'))
+  t.false(message.includes('fake3'))
 })
 
 test(`fails with anything that's not a string, array, or object`, t => {
