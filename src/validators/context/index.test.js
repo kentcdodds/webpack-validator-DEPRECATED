@@ -3,7 +3,7 @@ import contextValidator from '.'
 const {validate} = contextValidator
 
 test('passes with an absolute path', t => {
-  const absolutePath = '/foo/bar/baz'
+  const absolutePath = process.platform === 'win32' ? 'C://foo/bar/baz' : '/foo/bar/baz'
   const result = validate(absolutePath)
   t.notOk(result)
 })

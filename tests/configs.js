@@ -2,7 +2,7 @@
 import test from 'ava'
 import sinon from 'sinon'
 import passingConfigs from './passing-configs'
-import webpackValidator from '../'
+import webpackValidator from '../src'
 
 let originalConsoleLog
 
