@@ -44,9 +44,12 @@ function getBadConfig(config, allowed) {
       }) || [];
 }
 
-module.exports = function(config) {
-  return getBadConfig(config, allowedThings).forEach(function(key) {
+module.exports = function(config, options) {
+  var badConfig = getBadConfig(config, allowedThings).forEach(function(key) {
     console.error("Unexpected key \"" + key + "\" found in config.");
   });
+  if (options.strict && badConfig.length) {
+    throw new Error('Invalid webpack config');
+  }
   return config;
 }
