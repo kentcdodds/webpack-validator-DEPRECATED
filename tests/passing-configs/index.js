@@ -6,7 +6,7 @@ export default glob.sync(
   {ignore: __filename}
 ).map(filePathToConfigObj)
 
-function filePathToConfigObj(filepath) {
+export function filePathToConfigObj(filepath) {
   let config = require(filepath)
   if (config.default) {
     config = config.default
@@ -17,4 +17,5 @@ function filePathToConfigObj(filepath) {
     name: path.parse(filepath).name,
   }
 }
+
 

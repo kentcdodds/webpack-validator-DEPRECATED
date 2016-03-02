@@ -13,15 +13,17 @@
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html npm run test",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "lint": "eslint .",
-    "test": "ava src/**/*.test.js --verbose --require ./other/setup-ava-env.js",
+    "test": "ava \"src/**/*.test.js\" --verbose --require ./other/setup-ava-env.js",
     "test:scoped": "ava --verbose --require ./other/setup-ava-env.js",
     "test:all": "npm-run-all --parallel test test:configs",
     "test:configs": "ava tests/configs.js --verbose --require ./other/setup-ava-env.js",
+    "test:specific:config": "ava tests/specific-config.js --verbose --require ./other/setup-ava-env.js ",
     "watch:test": "nodemon --quiet --watch src --exec npm run test -s",
     "watch:test:scoped": "nodemon --quiet --watch src --exec npm run test:entry -s",
     "watch:test:all": "nodemon --quiet --watch src --watch tests --exec npm run test:all -s",
     "watch:test:configs": "nodemon --quiet --watch src --watch tests --exec npm run test:configs -s",
-    "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s"
+    "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s",
+    "watch:test:specific:config": "nodemon --quiet --watch src --watch tests --exec npm run test:specific:config -s"
   },
   "repository": {
     "type": "git",
@@ -31,7 +33,7 @@
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
   "license": "MIT",
   "dependencies": {
-    "configuration-validator": "1.0.0-beta.5",
+    "configuration-validator": "1.0.0-beta.7",
     "lodash": "4.4.0"
   },
   "devDependencies": {
@@ -82,3 +84,4 @@
     }
   }
 }
+
