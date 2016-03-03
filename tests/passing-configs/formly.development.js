@@ -70,62 +70,6 @@ function getDevConfig() {
   };
 }
 
-function getProdConfig() {
-  return {
-    output: {
-      filename: 'dist/formly.min.js'
-    },
-    devtool: 'source-map',
-    module: {
-      loaders: [
-        getJavaScriptLoader(),
-        getHtmlLoader()
-      ]
-    },
-    plugins: _.union(getCommonPlugins(), [
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.OccurenceOrderPlugin(),
-      new webpack.optimize.AggressiveMergingPlugin(),
-      new webpack.optimize.UglifyJsPlugin()
-    ])
-  };
-}
-
-function getTestConfig() {
-  const coverage = process.env.COVERAGE === 'true';
-  const ci = process.env.CI === 'true';
-  return {
-    entry: './index.test.js',
-    module: {
-      loaders: _.flatten([
-        coverage ? getCoverageLoaders() : getJavaScriptLoader(),
-        getHtmlLoader()
-      ])
-    },
-    plugins: getCommonPlugins(),
-    eslint: {
-      emitError: ci,
-      failOnError: ci
-    }
-  };
-
-  function getCoverageLoaders() {
-    return [
-      {
-        test: /\.test\.js$|\.mock\.js$/, // include only mock and test files
-        loaders: ['ng-annotate', 'babel', 'eslint?configFile=./other/test.eslintrc'],
-        exclude: /node_modules/
-      },
-      {
-        test: /\.js$/,
-        loaders: ['ng-annotate', 'isparta', 'eslint?configFile=./other/src.eslintrc'],
-        exclude: /node_modules|\.test.js$|\.mock\.js$/ // exclude node_modules and test files
-      }
-    ];
-  }
-}
-
-
 function getJavaScriptLoader() {
   return {test: /\.js$/, loaders: ['ng-annotate', 'babel', 'eslint?configFile=./other/src.eslintrc'], exclude: /node_modules/};
 }

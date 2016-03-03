@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "func-style": 0, // for skeleton validate functions
+  }
+}
