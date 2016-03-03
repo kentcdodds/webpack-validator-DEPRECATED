@@ -27,16 +27,35 @@ npm install --save-dev webpack-validator
 
 ## Support
 
-This is just the beginning. Here are the lists of properties this currently validates:
+This module supports validating all [documented properties](http://webpack.github.io/docs/configuration.html) from webpack.
+Currently, many of these don't do any actual validation, but it will warn you when you are including a property that is not
+documented (which likely means you have a typo, one of the leading causes of webpack fatigue).
 
-- `context`
-- `entry`
+## Custom Validators
+
+If you're using a plugin that adds properties to the config, you'll need to add a custom validator that covers that property.
+Preferably this would do actual validation, but you can have it be a no-op validator as well.
+
+For example, there are currently no validators written for the `eslint-loader` ([pull requests welcome!](http://makeapullrequest.com)),
+So you'll have to stub some out to avoid warnings if you're configuring it as part of your webpack config. Like so:
+
+```javascript
+module.exports = validateWebpack({
+  // ... your other config
+  eslint: { emitError: true },
+}, [
+  {key: 'eslint', validate: function noop() {}}
+])
+```
+
+Eventually, the hope is that you'll be able to require in these extra validators and they would actually validate values for you.
 
 ## Roadmap
 
 - We're looking to cover all official properties
+- We need to make plugin validators
+- We need to do actual validation, not just spell-check
 - Documenting stuff
-- Log out any property that is not covered by a validator (helps for typos)
 
 ## Plugins
 
