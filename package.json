@@ -23,7 +23,10 @@
     "watch:test:all": "nodemon --quiet --watch src --watch tests --exec npm run test:all -s",
     "watch:test:configs": "nodemon --quiet --watch src --watch tests --exec npm run test:configs -s",
     "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s",
-    "watch:test:specific:config": "nodemon --quiet --watch src --watch tests --exec npm run test:specific:config -s"
+    "watch:test:specific:config": "nodemon --quiet --watch src --watch tests --exec npm run test:specific:config -s",
+    "release": "npm run build && with-package git commit -am pkg.version && with-package git tag pkg.version && git push && npm publish && git push --tags",
+    "release:beta": "npm run release && npm run tag:beta",
+    "tag:beta": "with-package npm dist-tag add pkg.name@pkg.version beta"
   },
   "repository": {
     "type": "git",
@@ -33,7 +36,7 @@
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
   "license": "MIT",
   "dependencies": {
-    "configuration-validator": "1.0.0-beta.7",
+    "configuration-validator": "1.0.0-beta.8",
     "lodash": "4.4.0"
   },
   "devDependencies": {
@@ -61,7 +64,8 @@
     "validate-commit-msg": "2.0.0",
     "webpack": "1.12.13",
     "webpack-md5-hash": "0.0.5",
-    "webpack-notifier": "1.2.1"
+    "webpack-notifier": "1.2.1",
+    "with-package": "0.2.0"
   },
   "nyc": {
     "exclude": [
@@ -84,4 +88,3 @@
     }
   }
 }
-
