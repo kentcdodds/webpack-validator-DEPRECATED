@@ -6,7 +6,7 @@ export default {
 
 function validateDebug(val) {
   if (!isBoolean(val)) {
-    return 'no boolean value provided'
+    return 'must be a boolean value'
   }
 }
 
