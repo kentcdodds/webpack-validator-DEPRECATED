@@ -53,9 +53,9 @@ const config = {
       lessModuleLoader(false),
     ]),
   },
-  postcss: [
-    autoprefixer({browsers: ['last 2 versions']}),
-  ],
+  postcss: function() {
+    return [autoprefixer({browsers: ['last 2 versions']})];
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {NODE_ENV: JSON.stringify(process.env.NODE_ENV)},
