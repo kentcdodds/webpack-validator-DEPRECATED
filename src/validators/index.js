@@ -1,9 +1,11 @@
 import {flatten} from 'lodash'
+
 import context from './context'
 import entry from './entry'
 import output from './output'
 import module from './module'
 import plugins from './plugins'
+import postcss from './postcss'
 import externals from './externals'
 import node from './node'
 import stats from './stats'
@@ -39,6 +41,7 @@ export default flatten([
   target,
   bail,
   profile,
+  postcss,
   cache,
   amd,
   loader,
