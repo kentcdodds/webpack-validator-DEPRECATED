@@ -1,7 +1,9 @@
 import {noop} from 'lodash'
+import {isAbsolute} from 'path'
+
 export default [
-  {key: 'output.filename', validate: noop},
-  {key: 'output.path', validate: noop},
+  {key: 'output.filename', validate: validateOutputFileName},
+  {key: 'output.path', validate: validateOutputPath},
   {key: 'output.publicPath', validate: noop},
   {key: 'output.chunkFilename', validate: noop},
   {key: 'output.sourceMapFilename', validate: noop},
@@ -19,4 +21,29 @@ export default [
   {key: 'output.sourcePrefix', validate: noop},
   {key: 'output.crossOriginLoading', validate: noop},
 ]
+
+export function validateOutputFileName(value) {
+  let absolute
+  try {
+    absolute = isAbsolute(value)
+  } catch (e) {
+    // ignore
+  }
+  if (absolute) {
+    return 'must not be an absolute path'
+  }
+}
+
+export function validateOutputPath(value) {
+  let absolute
+  try {
+    absolute = isAbsolute(value)
+  } catch (e) {
+    // ignore
+  }
+  if (!absolute) {
+    return 'must be an absolute path'
+  }
+}
+
 
