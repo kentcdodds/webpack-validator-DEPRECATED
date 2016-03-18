@@ -8,7 +8,6 @@ const packageJson = {
 const here = require('path-here');
 const _ = require('lodash');
 const webpack = require('webpack');
-const deindent = require('deindent');
 const WebpackNotifierPlugin = require('webpack-notifier');
 
 export default getConfig();
@@ -80,7 +79,7 @@ function getHtmlLoader() {
 
 function getCommonPlugins() {
   return _.filter([
-    new webpack.BannerPlugin(getBanner(process.env.NODE_ENV), {raw: true}),
+    new webpack.BannerPlugin('string stuff'),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       VERSION: JSON.stringify(packageJson.version)
@@ -90,23 +89,4 @@ function getCommonPlugins() {
       contentImage: here('other/logo/angular-formly-logo-64px.png')
     })
   ]);
-}
-
-function getBanner(env) {
-  if (env === 'production') {
-    return deindent`
-      /*! ${packageJson.name} v${packageJson.version} | MIT | built with ♥ by ${packageJson.contributors.join(', ')} (ó ì_í)=óò=(ì_í ò) */
-    `.trim();
-  } else {
-    return deindent`
-      /*!
-      * ${packageJson.name} JavaScript Library v${packageJson.version}
-      *
-      * @license MIT (http://license.angular-formly.com)
-      *
-      * built with ♥ by ${packageJson.contributors.join(', ')}
-      * (ó ì_í)=óò=(ì_í ò)
-      */
-    `.trim();
-  }
 }

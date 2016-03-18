@@ -1,5 +1,5 @@
 import {noop} from 'lodash'
-import {isAbsolute} from 'path'
+import isAbsolute from 'path-is-absolute'
 
 export default [
   {key: 'output.filename', validate: validateOutputFileName},

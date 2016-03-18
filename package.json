@@ -11,6 +11,7 @@
     "validate": "npm-run-all --parallel lint cover build test:configs --sequential check-coverage",
     "build": "babel -d dist src",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "report-coverage": "cat ./coverage/lcov.info | node_modules/.bin/codecov",
     "lint": "eslint .",
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html ava",
     "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s",
@@ -34,8 +35,9 @@
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
   "license": "MIT",
   "dependencies": {
-    "configuration-validator": "1.0.0-beta.8",
-    "lodash": "4.4.0"
+    "configuration-validator": "1.0.0-beta.9",
+    "lodash": "4.4.0",
+    "path-is-absolute": "1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "6.3.3",
@@ -45,9 +47,9 @@
     "babel-preset-es2015": "6.5.0",
     "babel-preset-stage-2": "6.5.0",
     "babel-register": "6.5.2",
+    "codecov": "1.0.1",
     "compression-webpack-plugin": "0.3.0",
     "copy-webpack-plugin": "1.1.1",
-    "deindent": "0.1.0",
     "eslint": "1.10.3",
     "eslint-config-kentcdodds": "5.1.0",
     "extract-text-webpack-plugin": "^1.0.1",
