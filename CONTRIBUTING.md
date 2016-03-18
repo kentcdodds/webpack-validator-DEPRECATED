@@ -17,9 +17,17 @@ directory with a sensible name. See the
 [configuration-validator](https://github.com/kentcdodds/configuration-validator)
 documentation for information on what you need to create a validator.
 
-I recommend that you run `npm run watch:test:all` while developing your validator (and your
-validator's test) to make sure you're writing the validator to cover the use cases of the
-configs we have in the project.
+### Testing workflow
+- Use `npm run watch:test` for watching unit tests during development. For faster reload
+you can also run `npm run watch:test src/validators/<your-validator>/*.test.js` to only
+run the tests currently relevant to you.
+- To integration-test that your changes don't break existing valid configs in
+`tests/passing-configs/*.js`, run `npm run test:configs`.
+- To check both unit and integration tests, run `npm run test:all`.
+- To only check a config you are currently testing against, temporarily edit
+`tests/specific-config.js` and run `npm run test:specific:config`
+
+All mentioned `test:...` commands are also available in a `watch:test:...` version.
 
 ## Contributing configs
 
