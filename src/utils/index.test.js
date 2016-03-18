@@ -1,7 +1,7 @@
 import test from 'ava'
 import path from 'path'
 import os from 'os'
-import {fileExists} from '.'
+import {fileExists} from './index'
 
 test('fileExists returns true for a file', t => {
   t.true(fileExists(__filename))

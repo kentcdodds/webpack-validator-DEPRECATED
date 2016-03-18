@@ -1,5 +1,5 @@
 import test from 'ava'
-import postcssValidator from '.'
+import postcssValidator from './index'
 const {validate} = postcssValidator
 
 test('passes with a function that returns an array', t => {

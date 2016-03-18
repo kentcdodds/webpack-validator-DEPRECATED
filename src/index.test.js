@@ -1,7 +1,7 @@
 /* eslint no-console:0 */
 import test from 'ava'
 import sinon from 'sinon'
-import webpackValidator from '.'
+import webpackValidator from './index'
 
 let originalConsole
 

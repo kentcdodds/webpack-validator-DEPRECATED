@@ -1,6 +1,5 @@
 import test from 'ava'
-
-import debugValidator from '.'
+import debugValidator from './index'
 const {validate} = debugValidator
 
 test('passes with a boolean value', t => {
