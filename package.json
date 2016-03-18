@@ -10,20 +10,24 @@
     "prebuild": "rimraf dist",
     "validate": "npm-run-all --parallel lint cover build test:configs --sequential check-coverage",
     "build": "babel -d dist src",
-    "cover": "nyc --reporter=lcov --reporter=text --reporter=html npm run test",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "lint": "eslint .",
-    "test": "ava \"src/**/*.test.js\" --verbose --require ./other/setup-ava-env.js",
-    "test:scoped": "ava --verbose --require ./other/setup-ava-env.js",
-    "test:all": "npm-run-all --parallel test test:configs",
-    "test:configs": "ava tests/configs.js --verbose --require ./other/setup-ava-env.js",
-    "test:specific:config": "ava tests/specific-config.js --verbose --require ./other/setup-ava-env.js ",
-    "watch:test": "nodemon --quiet --watch src --exec npm run test -s",
-    "watch:test:scoped": "nodemon --quiet --watch src --exec npm run test:entry -s",
-    "watch:test:all": "nodemon --quiet --watch src --watch tests --exec npm run test:all -s",
-    "watch:test:configs": "nodemon --quiet --watch src --watch tests --exec npm run test:configs -s",
+
+    "cover": "nyc --reporter=lcov --reporter=text --reporter=html npm run test",
     "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s",
-    "watch:test:specific:config": "nodemon --quiet --watch src --watch tests --exec npm run test:specific:config -s",
+
+    "test": "ava",
+    "watch:test": "npm run test -- -w",
+
+    "test:configs": "ava tests/configs.js",
+    "watch:test:configs": "npm run test:configs -- -w",
+
+    "test:all": "npm-run-all --parallel test test:configs",
+    "watch:test:all": "npm-run-all --parallel watch:test watch:test:configs",
+
+    "test:specific:config": "ava tests/specific-config.js",
+    "watch:test:specific:config": "npm run test:specific:config -- -w",
+
     "release": "npm run build && with-package git commit -am pkg.version && with-package git tag pkg.version && git push && npm publish && git push --tags",
     "release:beta": "npm run release && npm run tag:beta",
     "tag:beta": "with-package npm dist-tag add pkg.name@pkg.version beta"
@@ -41,7 +45,7 @@
   },
   "devDependencies": {
     "autoprefixer": "6.3.3",
-    "ava": "0.12.0",
+    "ava": "0.13.0",
     "babel-cli": "6.5.1",
     "babel-core": "6.5.2",
     "babel-preset-es2015": "6.5.0",
@@ -88,5 +92,19 @@
       "commit-msg": "validate-commit-msg",
       "pre-commit": "npm run validate -s"
     }
+  },
+  "ava": {
+    "verbose": true,
+    "files": [
+      "src/**/*.test.js"
+    ],
+    "source": [
+      "./src/**/*.js",
+      "./tests/passing-configs/*.js"
+    ],
+    "require": [
+      "./other/setup-ava-env.js"
+    ],
+    "babel": "inherit"
   }
 }
