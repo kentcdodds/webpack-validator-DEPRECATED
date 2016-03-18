@@ -13,7 +13,7 @@
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "lint": "eslint .",
 
-    "cover": "nyc --reporter=lcov --reporter=text --reporter=html npm run test",
+    "cover": "nyc --reporter=lcov --reporter=text --reporter=html ava",
     "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s",
 
     "test": "ava",
