@@ -1,5 +1,5 @@
 import test from 'ava'
-import * as outputValidators from '.'
+import * as outputValidators from './index'
 
 const absolutePath = process.platform === 'win32' ? 'C://foo/bar/baz' : '/foo/bar/baz'
 const relativePath = 'foo/bar'

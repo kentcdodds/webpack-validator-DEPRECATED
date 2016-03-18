@@ -1,5 +1,5 @@
 import test from 'ava'
-import contextValidator from '.'
+import contextValidator from './index'
 const {validate} = contextValidator
 
 test('passes with an absolute path', t => {
