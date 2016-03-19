@@ -18,16 +18,15 @@ const lessModuleLoader = (prod) => {
   };
 };
 
-// const production = process.env.NODE_ENV === 'production';
-const production = true;
-
-const config = {
+export const makeConfig = ({production}) => ({
   resolve: {
     extensions: ['', '.js', '.jsx'],
     modulesDirectories: ['node_modules', 'src'],
   },
   entry: {
-    app: ['./configs.js'],
+    app: production
+      ? ['./configs.js']
+      : ['webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr&reload=true', './configs.js'],
   },
   output: {
     path: path.join(__dirname, 'public'),
@@ -73,6 +72,6 @@ const config = {
       sourceMap: false, // This means dropping build time from ~45 sec to ~32 sec
     })] : []),
   devtool: 'hidden-source-map',
-};
+});
 
-module.exports = config;
+export default makeConfig({production: true});

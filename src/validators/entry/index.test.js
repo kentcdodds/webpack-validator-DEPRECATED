@@ -1,82 +1,36 @@
 import test from 'ava'
-import proxyquire from 'proxyquire'
 
-const utilsStub = {fileExists: p => p.includes('exists')}
-const validateEntry = proxyquire('.', {'../../utils': utilsStub})
+import validateEntry, {SEPERATOR} from './index'
+const {validate} = validateEntry
 
-const {validate} = validateEntry.default
+/**
+ * Valid cases
+ */
 
-test('passes with a string as a path', t => {
-  const entry = './exists'
+test('passes with a string', t => {
+  const entry = 'foo'
   t.notOk(validate(entry, {config: {}}))
 })
 
-test('fails with a string of a path that does not exist', t => {
-  const entry = './fake'
-  t.ok(validate(entry, {config: {}}))
-})
-
 test('passes with an array of strings', t => {
-  const entry = ['./exists1', './exists2']
+  const entry = ['foo', 'bar']
   const config = {}
   t.notOk(validate(entry, {config}))
 })
 
-test('fails with an array of one string that does not exist', t => {
-  const entry = ['./exists1', './fake']
-  const config = {}
-  const message = validate(entry, {config})
-  t.ok(message)
-  t.false(message.includes(' - '))
-  t.true(message.includes('fake'))
-  t.false(message.includes('exists1'))
-})
-
-test('fails with an array of multiple strings that do not exist', t => {
-  const entry = ['./fake1', './exists1', './fake2']
-  const config = {}
-  const message = validate(entry, {config})
-  t.ok(message)
-  t.false(message.includes('exists1'))
-  t.true(message.includes(' - '))
-  t.true(message.includes('fake1'))
-  t.true(message.includes('fake2'))
-})
-
-test('passes with an object', t => {
+test('passes with an object that contains valid values', t => {
   const entry = {
-    path1: './exists1',
-    path2: ['./exists2', './exists3'],
+    path1: 'foo',
+    path2: ['foo', 'bar'],
   }
   const config = {}
   t.notOk(validate(entry, {config}))
 })
 
-test('fails with an object with a single failure', t => {
-  const entry = {
-    path1: './fake1',
-    path2: ['./exists1', './exists2'],
-  }
-  const config = {}
-  const message = validate(entry, {config})
-  t.false(message.includes('exists1'))
-  t.false(message.includes(' - '))
-  t.true(message.includes('fake1'))
-})
 
-test('fails with an object with multiple failures', t => {
-  const entry = {
-    path1: './fake1',
-    path2: ['./exists1', './fake2', './exists2'],
-  }
-  const config = {}
-  const message = validate(entry, {config})
-  t.false(message.includes('exists1'))
-  t.true(message.includes(' - '))
-  t.true(message.includes('fake1'))
-  t.true(message.includes('fake2'))
-  t.false(message.includes('fake3'))
-})
+/**
+ * Invalid cases
+ */
 
 test(`fails with anything that's not a string, array, or object`, t => {
   const entry = 42
@@ -84,4 +38,35 @@ test(`fails with anything that's not a string, array, or object`, t => {
   const message = validate(entry, {config})
   t.ok(message)
 })
+
+test('fails with an array of one string and one non-string', t => {
+  const entry = ['string', 1]
+  const config = {}
+  const message = validate(entry, {config})
+  t.ok(message)
+  t.false(message.includes(SEPERATOR)) // Only one error
+})
+
+test('fails with an array of with only non-strings', t => {
+  const entry = [1, 1]
+  const config = {}
+  const message = validate(entry, {config})
+  t.ok(message)
+  const messages = message.split(SEPERATOR)
+  t.ok(messages.length === 2)
+})
+
+test('fails with an object with nested failures', t => {
+  const entry = {
+    path1: 1,
+    path2: [2, 'foo'],
+  }
+  const config = {}
+  const message = validate(entry, {config})
+  const messages = message.split(SEPERATOR)
+  t.ok(messages.length === 2)
+  t.ok(messages[0].includes('1'))
+  t.ok(messages[1].includes('2'))
+})
+
 
