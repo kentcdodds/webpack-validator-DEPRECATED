@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import validateEntry from './index'
+import validateEntry, {SEPERATOR} from './index'
 const {validate} = validateEntry
 
 /**
@@ -44,7 +44,7 @@ test('fails with an array of one string and one non-string', t => {
   const config = {}
   const message = validate(entry, {config})
   t.ok(message)
-  t.false(message.includes('\n')) // Only one error
+  t.false(message.includes(SEPERATOR)) // Only one error
 })
 
 test('fails with an array of with only non-strings', t => {
@@ -52,7 +52,7 @@ test('fails with an array of with only non-strings', t => {
   const config = {}
   const message = validate(entry, {config})
   t.ok(message)
-  const messages = message.split('\n')
+  const messages = message.split(SEPERATOR)
   t.ok(messages.length === 2)
 })
 
@@ -63,7 +63,7 @@ test('fails with an object with nested failures', t => {
   }
   const config = {}
   const message = validate(entry, {config})
-  const messages = message.split('\n')
+  const messages = message.split(SEPERATOR)
   t.ok(messages.length === 2)
   t.ok(messages[0].includes('1'))
   t.ok(messages[1].includes('2'))

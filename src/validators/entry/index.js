@@ -8,6 +8,8 @@ export default {
   validate: validateEntry,
 }
 
+export const SEPERATOR = ' - '
+
 function validateEntry(val, {config}) {
   if (isString(val)) {
     // If a string is passed, we have to assume that the entry is valid,
@@ -18,8 +20,8 @@ function validateEntry(val, {config}) {
   } else if (isArray(val) || isObject(val)) {
     return map(val, entry => validateEntry(entry, {config}))
       .filter(error => error)
-      .join('\n')
+      .join(SEPERATOR)
   } else {
-    return `expected string, array of strings, or an object, but got ${val}.`
+    return `Expected string, array of strings, or an object, but got ${val}`
   }
 }
