@@ -1,5 +1,6 @@
 import glob from 'glob'
 import path from 'path'
+import pathParse from 'path-parse'
 
 export default glob.sync(
   path.join(__dirname, './*.js'),
@@ -14,8 +15,6 @@ export function filePathToConfigObj(filepath) {
   return {
     config,
     filepath,
-    name: path.parse(filepath).name,
+    name: pathParse(filepath).name,
   }
 }
-
-
