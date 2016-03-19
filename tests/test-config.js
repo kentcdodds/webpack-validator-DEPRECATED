@@ -3,7 +3,11 @@ import test from 'ava'
 import sinon from 'sinon'
 import webpackValidator from '../src/'
 
+// "Blessed", external validators for which we run integration tests here
+import postCssValidator from 'webpack-validator-plugin-postcss-loader'
+
 const extraValidators = [
+  postCssValidator,
   {key: 'tslint', validate() {}},
   {key: 'eslint', validate() {}},
   {key: 'metadata', validate() {}},
