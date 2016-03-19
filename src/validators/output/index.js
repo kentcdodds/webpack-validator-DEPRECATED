@@ -30,7 +30,7 @@ export function validateOutputFileName(value) {
     // ignore
   }
   if (absolute) {
-    return 'must not be an absolute path'
+    return 'Must not be an absolute path'
   }
 }
 
@@ -42,7 +42,7 @@ export function validateOutputPath(value) {
     // ignore
   }
   if (!absolute) {
-    return 'must be an absolute path'
+    return 'Must be an absolute path'
   }
 }
 

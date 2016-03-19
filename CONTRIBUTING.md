@@ -29,6 +29,14 @@ run the tests currently relevant to you.
 
 All mentioned `test:...` commands are also available in a `watch:test:...` version.
 
+### Warning message conventions
+Warning messages emitted by validators should
+- start with uppercase
+- don't end with a period
+- be seperated by " - " if they contain multiple warnings. (Example: a recursive validator
+  produces multiple warnings. They shouldn't be on seperate lines as this will break the output
+  look and feel.)
+
 ## Contributing configs
 
 If you'd like to add your webpack configuration to make sure we can validate it (and not break
