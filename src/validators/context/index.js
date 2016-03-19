@@ -12,7 +12,7 @@ function validateContext(val) {
     // ignore
   }
   if (!absolute) {
-    return 'must be an absolute path'
+    return 'Must be an absolute path'
   }
 }
 
