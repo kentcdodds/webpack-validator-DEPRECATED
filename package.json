@@ -12,22 +12,16 @@
     "build": "babel -d dist src",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "lint": "eslint .",
-
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html ava",
     "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s",
-
     "test": "ava",
     "watch:test": "npm run test -- -w",
-
     "test:configs": "ava tests/configs.js",
     "watch:test:configs": "npm run test:configs -- -w",
-
     "test:all": "npm-run-all --parallel test test:configs",
     "watch:test:all": "npm-run-all --parallel watch:test watch:test:configs",
-
     "test:specific:config": "ava tests/specific-config.js",
     "watch:test:specific:config": "npm run test:specific:config -- -w",
-
     "release": "npm run build && with-package git commit -am pkg.version && with-package git tag pkg.version && git push && npm publish && git push --tags",
     "release:beta": "npm run release && npm run tag:beta",
     "tag:beta": "with-package npm dist-tag add pkg.name@pkg.version beta"
@@ -64,6 +58,7 @@
     "npm-run-all": "1.5.3",
     "nyc": "5.6.0",
     "path-here": "1.1.0",
+    "path-parse": "^1.0.5",
     "rimraf": "2.5.2",
     "sinon": "1.17.3",
     "validate-commit-msg": "2.0.0",
