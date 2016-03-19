@@ -1,10 +1,7 @@
 import test from 'ava'
-import proxyquire from 'proxyquire'
 
-const utilsStub = {fileExists: p => p.includes('exists')}
-const validateEntry = proxyquire('.', {'../../utils': utilsStub})
-
-const {validate} = validateEntry.default
+import validateEntry from './index'
+const {validate} = validateEntry
 
 /**
  * Valid cases
