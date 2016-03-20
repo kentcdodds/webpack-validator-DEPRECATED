@@ -6,6 +6,7 @@ const typesAndInstances = [
   {instance: Boolean, type: 'boolean'},
   {instance: Number, type: 'number'},
   {instance: Array, type: 'array'},
+  {instance: Function, type: 'function'},
 ]
 
 function friendlyTypeOf(value) {

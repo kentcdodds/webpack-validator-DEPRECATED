@@ -2,13 +2,12 @@ import {
   isString, isArray,
   isObject, map,
 } from 'lodash'
+import {SEPERATOR} from '../../constants'
 
 export default {
   key: 'entry',
   validate: validateEntry,
 }
-
-export const SEPERATOR = ' - '
 
 function validateEntry(val, {config}) {
   if (isString(val)) {
