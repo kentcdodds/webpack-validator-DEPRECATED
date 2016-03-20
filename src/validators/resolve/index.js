@@ -1,11 +1,12 @@
 import {noop} from 'lodash'
 import validateAlias from './validateAlias'
 import validateRoot from './validateRoot'
+import validateModulesDirectories from './validateModulesDirectories'
 
 export default [
   {key: 'resolve.alias', validate: validateAlias},
   {key: 'resolve.root', validate: validateRoot},
-  {key: 'resolve.modulesDirectories', validate: noop},
+  {key: 'resolve.modulesDirectories', validate: validateModulesDirectories},
   {key: 'resolve.fallback', validate: noop},
   {key: 'resolve.extensions', validate: noop},
   {key: 'resolve.packageMains', validate: noop},
