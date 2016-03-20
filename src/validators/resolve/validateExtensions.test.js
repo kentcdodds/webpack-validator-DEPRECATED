@@ -22,8 +22,8 @@ test(`fails if input isn't an array`, t => {
 test(`fails if input array doesn't contain ""'`, t => {
   const extensions = ['.js']
   const result = validateExtensions(extensions)
-  t.same(result, `The extensions array should contain "", ` +
-         `so that modules that were required with their extension are properly resolved`)
+  t.same(result, {warning: `The extensions array should contain "", ` +
+         `so that modules that were required with their extension are properly resolved`})
 })
 
 test(`fails if input array contains non-strings`, t => {

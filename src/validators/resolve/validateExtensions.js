@@ -9,8 +9,8 @@ export default function validateExtensions(extensions) {
   }
 
   if (!extensions.includes('')) {
-    return `The extensions array should contain "", ` +
-       `so that modules that were required with their extension are properly resolved`
+    return {warning: `The extensions array should contain "", ` +
+       `so that modules that were required with their extension are properly resolved`}
   }
 
   const arrayContainsNonStrings = _.some(extensions, extension => friendlyTypeOf(extension) !== 'string')
