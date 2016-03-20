@@ -33,7 +33,7 @@ All mentioned `test:...` commands are also available in a `watch:test:...` versi
 Warning messages emitted by validators should
 - start with uppercase
 - don't end with a period
-- be seperated by " - " if they contain multiple warnings. (Example: a recursive validator
+- be separated by " - " if they contain multiple warnings. (Example: a recursive validator
   produces multiple warnings. They shouldn't be on seperate lines as this will break the output
   look and feel.)
 

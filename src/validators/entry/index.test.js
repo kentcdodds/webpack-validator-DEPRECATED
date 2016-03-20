@@ -1,6 +1,7 @@
 import test from 'ava'
 
-import validateEntry, {SEPERATOR} from './index'
+import validateEntry from './index'
+import {SEPERATOR} from '../../constants'
 const {validate} = validateEntry
 
 /**
