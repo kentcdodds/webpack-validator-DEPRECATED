@@ -2,6 +2,8 @@
 
 Use this to save yourself some time when working on a webpack configuration.
 
+[![Build Status](https://img.shields.io/travis/kentcdodds/webpack-validator.svg?style=flat-square)](https://travis-ci.org/kentcdodds/webpack-validator)
+[![Code Coverage](https://img.shields.io/codecov/c/github/kentcdodds/webpack-validator.svg?style=flat-square)](https://codecov.io/github/kentcdodds/webpack-validator)
 [![version](https://img.shields.io/npm/v/webpack-validator.svg?style=flat-square)](http://npm.im/webpack-validator)
 [![downloads](https://img.shields.io/npm/dm/webpack-validator.svg?style=flat-square)](http://npm-stat.com/charts.html?package=webpack-validator&from=2015-08-01)
 [![MIT License](https://img.shields.io/npm/l/webpack-validator.svg?style=flat-square)](http://opensource.org/licenses/MIT)

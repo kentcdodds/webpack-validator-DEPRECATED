@@ -1,4 +1,4 @@
-import {isAbsolute} from 'path'
+import isAbsolute from 'path-is-absolute'
 export default {
   key: 'context',
   validate: validateContext,
