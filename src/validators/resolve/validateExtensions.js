@@ -13,11 +13,16 @@ export default function validateExtensions(extensions) {
        `so that modules that were required with their extension are properly resolved`
   }
 
-  if (_.some(extensions, extension => friendlyTypeOf(extension) !== 'string')) {
+  const arrayContainsNonStrings = _.some(extensions, extension => friendlyTypeOf(extension) !== 'string')
+
+  if (arrayContainsNonStrings) {
     return `Array must contain strings only`
   }
 
-  if (_.some(extensions, extension => extension !== '' && !extension.startsWith('.'))) {
+  const arrayContainsMalformattedExtensions =
+    _.some(extensions, extension => extension !== '' && !extension.startsWith('.'))
+
+  if (arrayContainsMalformattedExtensions) {
     return `Extensions should start with a period, e.g. ".js"`
   }
 
