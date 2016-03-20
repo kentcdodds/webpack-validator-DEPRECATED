@@ -1,9 +1,9 @@
 import test from 'ava'
 import contextValidator from './index'
+import {absolutePath} from '../../../tests/fixtures'
 const {validate} = contextValidator
 
 test('passes with an absolute path', t => {
-  const absolutePath = process.platform === 'win32' ? 'C://foo/bar/baz' : '/foo/bar/baz'
   const result = validate(absolutePath)
   t.notOk(result)
 })

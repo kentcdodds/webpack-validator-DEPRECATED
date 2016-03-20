@@ -1,7 +1,7 @@
 import test from 'ava'
 import * as outputValidators from './index'
+import {absolutePath} from '../../../tests/fixtures'
 
-const absolutePath = process.platform === 'win32' ? 'C://foo/bar/baz' : '/foo/bar/baz'
 const relativePath = 'foo/bar'
 
 runOutputFileNameTests(outputValidators.validateOutputFileName)
