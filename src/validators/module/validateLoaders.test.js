@@ -13,7 +13,7 @@ test(`fails when input isn't an array`, t => {
   t.same(result, `Expected an array of loader objects, but got foo`)
 })
 
-test('seperates multiple errors with SEPERATOR', t => {
+test('separates multiple errors with SEPERATOR', t => {
   const invalidLoaders = ['foo', 'bar']
   const result = validateLoaders(invalidLoaders)
   t.ok(result.split(SEPERATOR).length === invalidLoaders.length)
