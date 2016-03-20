@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import validateLoadersEntry from './validateLoadersEntry'
+import validateLoaders from './validateLoaders'
 import {SEPERATOR} from '../../constants'
 
 /**
@@ -9,13 +9,13 @@ import {SEPERATOR} from '../../constants'
 
 test(`fails when input isn't an array`, t => {
   const invalidLoaders = 'foo'
-  const result = validateLoadersEntry(invalidLoaders)
+  const result = validateLoaders(invalidLoaders)
   t.same(result, `Expected an array of loader objects, but got foo`)
 })
 
 test('seperates multiple errors with SEPERATOR', t => {
   const invalidLoaders = ['foo', 'bar']
-  const result = validateLoadersEntry(invalidLoaders)
+  const result = validateLoaders(invalidLoaders)
   t.ok(result.split(SEPERATOR).length === invalidLoaders.length)
 })
 
@@ -27,6 +27,6 @@ test('passes when input is a array of valid loader objects', t => {
     {loader: 'foo', test: /foo/},
     {loader: 'foo', test: /foo/},
   ]
-  const result = validateLoadersEntry(validLoaders)
+  const result = validateLoaders(validLoaders)
   t.notOk(result)
 })

@@ -4,7 +4,7 @@ import validateLoader from './validateLoader'
 
 
 //  loaders: an array of loaders
-export default function validateLoadersEntry(loaders) {
+export default function validateLoaders(loaders) {
   if (friendlyTypeOf(loaders) !== 'array') {
     return `Expected an array of loader objects, but got ${loaders}`
   }

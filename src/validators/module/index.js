@@ -1,9 +1,9 @@
 import {noop} from 'lodash'
-import validateLoadersEntry from './validateLoadersEntry'
+import validateLoaders from './validateLoaders'
 
 export default [
-  {key: 'module.loaders', validate: validateLoadersEntry},
-  {key: 'module.preLoaders', validate: validateLoadersEntry},
-  {key: 'module.postLoaders', validate: validateLoadersEntry},
+  {key: 'module.loaders', validate: validateLoaders},
+  {key: 'module.preLoaders', validate: validateLoaders},
+  {key: 'module.postLoaders', validate: validateLoaders},
   {key: 'module.noParse', validate: noop},
 ]
