@@ -1,7 +1,7 @@
 import test from 'ava'
 import contextValidator from './index'
-const {validate} = contextValidator
 import {absolutePath} from '../../../tests/fixtures'
+const {validate} = contextValidator
 
 test('passes with an absolute path', t => {
   const result = validate(absolutePath)
