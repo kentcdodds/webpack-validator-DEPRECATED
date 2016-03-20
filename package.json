@@ -71,7 +71,8 @@
   },
   "nyc": {
     "exclude": [
-      "**/*.test.js"
+      "**/*.test.js",
+      "tests/fixtures.js"
     ]
   },
   "eslintConfig": {
