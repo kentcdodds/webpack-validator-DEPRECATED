@@ -50,5 +50,11 @@ to do automatic releases and generate a changelog based on the commit history. S
 follow [a convention](https://github.com/stevemao/conventional-changelog-angular/blob/master/convention.md)
 for commit messages. Please follow this convention for your commit messages.
 
+You can use `commitizen` to help you to follow [the convention](https://github.com/stevemao/conventional-changelog-angular/blob/master/convention.md)
 
+Once you are ready to commit the changes, please use the below commands
 
+1. `git add <files to be comitted>`
+2. `$ npm run commit`
+
+... and follow the instruction of the interactive prompt.
