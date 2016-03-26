@@ -11,14 +11,16 @@
     "prebuild": "rimraf dist",
     "validate": "npm-run-all --parallel lint cover build test:configs --sequential check-coverage",
     "build": "babel -d dist src",
+    "dev": "npm-run-all --parallel watch:lint watch:test",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "report-coverage": "cat ./coverage/lcov.info | node_modules/.bin/codecov",
     "lint": "eslint .",
+    "watch:lint": "esw . -w",
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html ava",
     "watch:cover": "nodemon --quiet --watch src --exec npm run cover -s",
-    "test": "ava",
-    "watch:test": "npm run test -- -w",
-    "test:configs": "ava tests/configs.js",
+    "test": "ava --verbose",
+    "watch:test": "ava -w",
+    "test:configs": "ava tests/configs.js --verbose",
     "watch:test:configs": "npm run test:configs -- -w",
     "test:all": "npm-run-all --parallel test test:configs",
     "watch:test:all": "npm-run-all --parallel watch:test watch:test:configs",
@@ -55,6 +57,7 @@
     "cz-conventional-changelog": "^1.1.5",
     "eslint": "1.10.3",
     "eslint-config-kentcdodds": "5.1.0",
+    "eslint-watch": "2.1.10",
     "extract-text-webpack-plugin": "^1.0.1",
     "ghooks": "1.0.3",
     "glob": "7.0.0",
@@ -97,7 +100,6 @@
     }
   },
   "ava": {
-    "verbose": true,
     "files": [
       "src/**/*.test.js"
     ],
