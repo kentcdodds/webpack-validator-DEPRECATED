@@ -1,8 +1,9 @@
 import {sortBy, difference, includes} from 'lodash'
 import {friendlyTypeOf} from '../../utils'
+import {validateReducer} from 'configuration-validator'
 
-const EXIT_EARLY = 'EXIT_EARLY'
-const CONTINUE = 'CONTINUE'
+const {EXIT_EARLY, CONTINUE} = validateReducer
+
 const validProperties = getValidProperties()
 const validKeys = validProperties.map(({key}) => key)
 const validStringValues = sortBy([
@@ -21,16 +22,7 @@ export {validKeysJoined, validStringValuesJoined, validDataTypesJoined, validate
 
 
 function validateStats(val) {
-  const result = validators.reduce((res, validator) => {
-    if (res !== CONTINUE) {
-      return res
-    }
-    return validator(val)
-  }, CONTINUE)
-
-  if (result !== CONTINUE && result !== EXIT_EARLY) {
-    return result
-  }
+  return validateReducer(validators, val)
 }
 
 function validateDataType(val) {
