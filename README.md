@@ -1,5 +1,11 @@
 # Webpack Validator
 
+## DEPRECATED
+
+This repo has been deprecated in favor of [this one](https://github.com/jonathanewerner/webpack-validator)
+
+---
+
 Use this to save yourself some time when working on a webpack configuration.
 
 [![Build Status](https://img.shields.io/travis/kentcdodds/webpack-validator.svg?style=flat-square)](https://travis-ci.org/kentcdodds/webpack-validator)
