@@ -34,6 +34,21 @@ And you'll get helpful error and warning messages telling you when you've got so
 npm install --save-dev webpack-validator
 ```
 
+## semver
+
+Because this module is intended to catch errors in your config, we'll work similar to how ESLint has done semver:
+
+```
+#.#.#
+Major.Minor.Patch
+```
+
+- Major - When there's a change with the public facing webpack-validator API where you'd have to change how you're using it
+- Minor - When there's a new feature or validator
+- Patch - When there's a bug fix to an existing API or validator (in a non-breaking way)
+
+The most different part of all of this is the fact that if you're depending on `webpack-validator` as part of your build process and you fail if there are errors, then you could experience a problem in a `minor` update when a new validator is added or updated and catches a problem in your configuration. If you're going to be doing this, we recommend that you lock down your version of `webpack-validator` and only update explicitly.
+
 ## Support
 
 This module supports validating all [documented properties](http://webpack.github.io/docs/configuration.html) from webpack.
