@@ -1,4 +1,5 @@
 import {isPlainObject, values, every} from 'lodash'
+import {friendlyTypeOf} from '../../utils'
 
 export default {
   key: 'postcss',
@@ -6,7 +7,7 @@ export default {
 }
 
 function validateEntry(val) {
-  if (typeof val !== 'function') {
+  if (friendlyTypeOf(val) !== 'function') {
     return {warning: 'The documented way of specifying postcss options is supplying a function'}
   } else {
     const options = val()

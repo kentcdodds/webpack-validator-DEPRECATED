@@ -23,5 +23,5 @@ function validatePlugins(plugins) {
 // plugins can either be a function which has prototype.apply defined,
 // or a function that returns an object with apply property
 export function isPlugin(plugin) {
-  return !!plugin.apply || typeof plugin === 'function'
+  return !!plugin.apply || friendlyTypeOf(plugin) === 'function'
 }
